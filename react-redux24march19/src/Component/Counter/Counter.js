@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { CounterAction } from '../../store/action/counter';
+
+
 class Counter extends Component{
     decrement = () => {
-        this.props.dispatch({ type: 'DECREMENT' });
+        this.props.dispatch(CounterAction.decrement());
         console.log("decrement");
     }
     increment = () => {
-        this.props.dispatch({ type: 'INCREMENT' });
+        this.props.dispatch(CounterAction.increment());
         console.log("increment");
     }
     render() {
