@@ -1,0 +1,16 @@
+.nav ul li {
+  display: inline-block;
+  padding: 12px;
+  border: 1px solid #cccc;
+  margin: 0 12px 0 0;
+}
+nav.nav a {
+  text-decoration: none; 
+  color: #fff;
+}
+nav.nav{
+background: #ccc;
+color: #ffff;}
+nav.nav ul{ margin: 0; }
+.nav ul li:hover { background: #000;}
+.rc-container { margin: 0px 15px; }
