@@ -1,11 +1,13 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-
 //components
+import Searchbar from '../Searchbar/Searchbar';
 
 class App extends React.Component{
     render() {
-        return <div>App</div>;
+        return (
+            <div className="ui container"><Searchbar /></div>
+        );
     }
 
 }
+export default App
