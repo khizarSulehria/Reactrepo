@@ -5,12 +5,15 @@ import './App.css'
 //components
 import Searchbar from '../Searchbar/Searchbar';
 import VideoList from '../VideoList/VideoList';
+import VideoDetail from '../VideoDetail/VideoDetail';
+
 
 class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            videoList : []
+            videoList : [],
+            videoId : null
         }
     }
     
@@ -25,7 +28,7 @@ class App extends React.Component{
                 key: Config.YOUTUBE_KEY
             }
         })
-        .then( (response)  =>  this.setState({ videoList : response.data.items })  )
+        .then( (response)  =>  this.setState({ videoList : response.data.items,videoId:null })  )
         .catch(function (error) {
             console.log(error);
           });
@@ -33,27 +36,36 @@ class App extends React.Component{
     }
 
     selectVideo = (videoId) => {
-        console.log(videoId);
+        this.setState({
+            videoId
+        })
     }
 
     render() {
        // console.log("RENDER ",this.state.videoList);
         return (
-            <div className="ui container">
-                <div className="ui grid">
-                    <div className="sixteen wide column">
-                        <Searchbar onSearchBarSubmit={this.onSearchBarSubmit} />
+            <div className="wrapper" >
+                <div className="ui container">
+                    <div className="ui grid">
+                        <div className="sixteen wide column">
+                            <Searchbar onSearchBarSubmit={this.onSearchBarSubmit} />
+                        </div>
+                        {this.state.videoId &&
+                        <div className="nine wide column">
+                        <VideoDetail videoId={this.state.videoId}/>
+                        </div>
+                        }
+                        <div className="seven wide column">
+                            <VideoList videoList={this.state.videoList} selectVideo={this.selectVideo}/>
+                        </div>
                     </div>
-                    <div className="nine wide column"></div>
-                    <div className="seven wide column">
-                        <VideoList videoList={this.state.videoList} selectVideo={this.selectVideo}/>
-                    </div>
-                    
-                    
                 </div>
             </div>
+
         );
     }
-
+    componentDidMount(){
+        this.onSearchBarSubmit("Pubg");
+    }
 }
 export default App

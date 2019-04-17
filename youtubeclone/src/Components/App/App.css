@@ -2,3 +2,8 @@
     width : 200px;
 }
 .list-item { cursor: pointer;}
+.wrapper{padding: 10px;}
+iframe{
+  width: 100%;
+  height : 315px;
+}
